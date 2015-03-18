@@ -12,3 +12,6 @@ module.exports = (robot) ->
 
   robot.hear /月子ちゃんぺろぺろ/i, (msg) ->
     msg.reply 'まったくどうしようもない変態さんですね'
+
+  robot.hear /^月子ちゃん$/i, (msg) ->
+    msg.reply 'なんですか'
