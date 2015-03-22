@@ -1,0 +1,10 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    mecab (0.996)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  mecab (= 0.996)
