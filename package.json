@@ -1,6 +1,6 @@
 {
   "name": "tsukiko",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "author": "'ほと' <mail@hoto.me>",
   "description": "hoto-goma bot",
@@ -20,10 +20,11 @@
     "hubot-shipit": "^0.1.2",
     "hubot-slack": "^3.3.0",
     "hubot-youtube": "^0.1.2",
+    "mecab-async": "^0.1.0",
     "request": "^2.53.0",
     "xml2js": "^0.4.6"
   },
   "engines": {
-    "node": "0.10.x"
+    "node": "0.12.x"
   }
 }
