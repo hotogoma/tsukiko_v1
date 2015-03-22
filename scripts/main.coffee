@@ -1,10 +1,13 @@
 CronJob = require('cron').CronJob
+cronjob = (crontime, callback) ->
+  new CronJob crontime, callback, null, true
 
 module.exports = (robot) ->
-  new CronJob '0 30 7 * * 1-5', ->
+
+  cronjob '0 30 7 * * 1-5', ->
     robot.send { room: '#general' }, '朝ですよ'
 
-  new CronJob '0 0 19 * * 1-5', ->
+  cronjob '0 0 19 * * 1-5', ->
     robot.reply { room: '#general', user: { name: 'hoto' } }, 'ごはん'
 
   robot.respond /ぺろぺろ/i, (msg) ->
