@@ -20,9 +20,7 @@
     "hubot-shipit": "^0.1.2",
     "hubot-slack": "^3.3.0",
     "hubot-youtube": "^0.1.2",
-    "mecab-async": "^0.1.0",
-    "request": "^2.53.0",
-    "xml2js": "^0.4.6"
+    "mecab-async": "^0.1.0"
   },
   "engines": {
     "node": "0.12.x"

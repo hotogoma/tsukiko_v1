@@ -1,17 +1,17 @@
-request = require 'request'
-xml2js = require 'xml2js'
-token = process.env.YAHOO_API_TOKEN
+MeCab = new require('mecab-async')
+mecab = new MeCab()
 
-String.prototype.parse = (success, fail) ->
-  options = {
-    url: 'http://jlp.yahooapis.jp/MAService/V1/parse'
-    headers: { 'User-Agent': 'Yahoo AppID:' + token }
-    form: { sentence: @toString() }
-  }
+module.exports = (robot) ->
 
-  request.post options, (err, res, xml) ->
-    if ! err && res.statusCode == 200
-      xml2js.parseString xml, { explicitArray: false }, (err, json) ->
-        success json.ResultSet.ma_result.word_list.word
-    else if fail
-      fail(err, res)
+  # 形態素解析した結果を返す
+  robot.hear /^parse (.+)/i, (msg) ->
+    parsed = mecab.parseSyncFormat msg.message.text
+    msg.send parsed.map(JSON.stringify).join("\n")
+
+  # メンション内容を形態素解析して反応する
+  robot.respond /.*/, (msg) ->
+    parsed = mecab.parseSyncFormat msg.message.text
+
+    # 感動詞をオウム返しする
+    parsed.map (word) ->
+      msg.reply word.original if word.lexical == '感動詞'
