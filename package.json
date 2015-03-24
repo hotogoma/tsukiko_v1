@@ -5,6 +5,7 @@
   "author": "'ほと' <mail@hoto.me>",
   "description": "hoto-goma bot",
   "dependencies": {
+    "cheerio-httpcli": "^0.3.1",
     "cron": "^1.0.9",
     "hubot": "^2.11.4",
     "hubot-diagnostics": "0.0.1",
@@ -20,7 +21,8 @@
     "hubot-shipit": "^0.1.2",
     "hubot-slack": "^3.3.0",
     "hubot-youtube": "^0.1.2",
-    "mecab-async": "^0.1.0"
+    "mecab-async": "^0.1.0",
+    "q": "^1.2.0"
   },
   "engines": {
     "node": "0.12.x"
