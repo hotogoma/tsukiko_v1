@@ -40,7 +40,7 @@ module.exports = (robot) ->
       msg.send stock.format()
 
   # 夕方に終値をつぶやく
-  cronjob '0 18 * * * 1-5', ->
+  cronjob '0 0 18 * * 1-5', ->
     Q.when(stock_list.info()).done (list) ->
       robot.send { room: '#general' }, '今日の株価の終値ですよ'
       text = list.map( (stock) -> stock.format() ).join("\n")
@@ -103,6 +103,7 @@ class Stock
         name: $('#stockinf .symbol h1').text()
         price: $('#stockinf .stoksPrice:not(.realTimChange)').text()
         change: $('#stockinf .yjMSt').text()
+        url: "#{yahoo_stock_baseurl}?code=#{code}"
       q.resolve self
     q.promise
 
@@ -111,5 +112,5 @@ class Stock
       when '+' then arr = '↑'
       when '-' then arr = '↓'
       else arr = '→'
-    "【#{@info.code}】 #{@info.name} #{@info.price} #{arr} #{@info.change}"
+    "【#{@info.code}】 #{@info.name} #{@info.price} #{arr} #{@info.change} #{@info.url}"
 
