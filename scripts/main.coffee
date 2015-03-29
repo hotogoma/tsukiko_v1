@@ -21,6 +21,3 @@ module.exports = (robot) ->
 
   robot.hear /(疲|つか)れた/i, (msg) ->
     msg.reply 'おつかれさまです先輩'
-
-  robot.hear /test/i, (msg) ->
-    msg.reply '<http://hotolab.net|Click Here>'

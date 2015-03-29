@@ -1,6 +1,10 @@
 Q = require 'q'
 httpcli = require 'cheerio-httpcli'
 
+CronJob = require('cron').CronJob
+cronjob = (crontime, callback) ->
+  new CronJob crontime, callback, null, true
+
 module.exports = (robot) ->
   stock_list = new StockList robot.brain
 
@@ -35,6 +39,13 @@ module.exports = (robot) ->
     Q.when(stock.get(code)).done (stock) ->
       msg.send stock.format()
 
+  # 夕方に終値をつぶやく
+  cronjob '0 18 * * * 1-5', ->
+    Q.when(stock_list.info()).done (list) ->
+      robot.send { room: '#general' }, '今日の株価の終値ですよ'
+      text = list.map( (stock) -> stock.format() ).join("\n")
+      robot.send { room: '#general' }, text
+
 class StockList
 
   constructor: (@storage, @key = 'stock_list') ->
@@ -63,21 +74,37 @@ class StockList
       ret.push callback(k, list[k])
     ret
 
+  info: (interval = 100) ->
+    list = @get()
+    size = Object.keys(list).length
+    res = []
+    return res if size == 0
+    delay = 0
+    q = Q.defer()
+    for k of list
+      setTimeout (code) ->
+        stock = new Stock
+        Q.when(stock.get(code)).done (stock) ->
+          res.push stock
+          q.resolve res if res.length == size
+      , delay += interval, k
+    q.promise
+
 
 class Stock
 
   get: (code) ->
     self = @
     yahoo_stock_baseurl = 'http://stocks.finance.yahoo.co.jp/stocks/detail'
-    d = Q.defer()
+    q = Q.defer()
     httpcli.fetch yahoo_stock_baseurl, { code: code }, (err, $, res) ->
       self.info =
         code: code
         name: $('#stockinf .symbol h1').text()
         price: $('#stockinf .stoksPrice:not(.realTimChange)').text()
         change: $('#stockinf .yjMSt').text()
-      d.resolve self
-    d.promise
+      q.resolve self
+    q.promise
 
   format: ->
     switch @info.change.slice(0, 1)
