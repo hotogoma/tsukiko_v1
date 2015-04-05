@@ -22,7 +22,10 @@
     "hubot-slack": "^3.3.0",
     "hubot-youtube": "^0.1.2",
     "mecab-async": "^0.1.0",
-    "q": "^1.2.0"
+    "q": "^1.2.0",
+    "request": "^2.55.0",
+    "xml2js": "^0.4.6",
+    "xml2json": "^0.6.1"
   },
   "engines": {
     "node": "0.12.x"
