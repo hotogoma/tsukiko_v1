@@ -40,11 +40,11 @@ module.exports = (robot) ->
       msg.send stock.format()
 
   # 夕方に終値をつぶやく
-  cronjob '0 0 18 * * 1-5', ->
-    Q.when(stock_list.info()).done (list) ->
-      robot.send { room: '#general' }, '今日の株価の終値ですよ'
-      text = list.map( (stock) -> stock.format() ).join("\n")
-      robot.send { room: '#general' }, text
+  #cronjob '0 0 18 * * 1-5', ->
+  #  Q.when(stock_list.info()).done (list) ->
+  #    robot.send { room: '#general' }, '今日の株価の終値ですよ'
+  #    text = list.map( (stock) -> stock.format() ).join("\n")
+  #    robot.send { room: '#general' }, text
 
 class StockList
 
