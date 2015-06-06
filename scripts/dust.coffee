@@ -12,7 +12,3 @@ module.exports = (robot) ->
 
   cronjob '0 30 7 * * 5', ->
     robot.send { room: '#general' }, '資源ごみの日です'
-
-  cronjob '0 50 14 * * 6', ->
-    robot.send { room: '#general' }, '資源ごみの日です'
-
