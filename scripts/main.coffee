@@ -4,6 +4,8 @@ cronjob = (crontime, callback) ->
 
 module.exports = (robot) ->
 
+  robot.send { room: '#general' }, '＼＼\\\\ ٩( ‘ω’ )و //／／ﾃﾃｰﾝ'
+
   cronjob '0 30 7 * * 1-5', ->
     robot.send { room: '#general' }, '朝ですよ'
 
