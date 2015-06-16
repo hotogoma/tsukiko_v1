@@ -4,8 +4,8 @@ url = 'http://rss.weather.yahoo.co.jp/rss/days/4410.xml'
 CronJob = require('cron').CronJob
 
 replaceWeather = (str) ->
-  from = ['晴', '曇', '雨', '雪', '時々', '後']
-  to   = ['☀', '☁', '☔', '❄', '/', '➔']
+  from = ['晴れ', '晴', '曇り', '曇', '雨', '雪', '時々', '後']
+  to   = ['☀', '☀', '☁', '☁', '☔', '❄', '/', '➔']
   str = str.replace(from[i], to[i], "g") for i of from
   return str
 
