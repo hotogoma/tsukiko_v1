@@ -6,12 +6,12 @@ module.exports = (robot) ->
 
   robot.send { room: '#general' }, '＼＼\\\\ ٩( ‘ω’ )و //／／ﾃﾃｰﾝ'
 
-  cronjob '0 30 7 * * 1-5', ->
+  cronjob '0 30 6 * * 1-5', ->
     robot.send { room: '#general' }, '朝ですよ'
 
   cronjob '0 0 19 * * 1-5', ->
     #robot.reply { room: '#general', user: { name: 'hoto' } }, 'ごはん'
-    robot.reply { room: '#general' }, '19時ですよ'
+    robot.send { room: '#general' }, '19時ですよ'
 
   robot.respond /ぺろぺろ/i, (msg) ->
     msg.reply 'まったくどうしようもない変態さんですね'

@@ -4,11 +4,11 @@ cronjob = (crontime, callback) ->
 
 module.exports = (robot) ->
 
-  cronjob '0 30 7 * * 3', ->
+  cronjob '5 30 6 * * 3', ->
     robot.send { room: '#general' }, '可燃ごみの日です'
 
-  cronjob '0 30 7 * * 6', ->
+  cronjob '5 30 6 * * 6', ->
     robot.send { room: '#general' }, '可燃ごみの日です'
 
-  cronjob '0 30 7 * * 5', ->
+  cronjob '5 30 6 * * 5', ->
     robot.send { room: '#general' }, '資源ごみの日です'
