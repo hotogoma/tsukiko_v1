@@ -10,8 +10,11 @@ module.exports = (robot) ->
     robot.send { room: '#general' }, '朝ですよ'
 
   cronjob '0 0 19 * * 1-5', ->
-    #robot.reply { room: '#general', user: { name: 'hoto' } }, 'ごはん'
     robot.send { room: '#general' }, '19時ですよ'
+
+  # 平日前夜(日〜木) 22:00 に「ていうかもう寝よう」
+  cronjob '0 0 22 * * 1-4', ->
+    robot.send { room: '#general' }, 'https://pbs.twimg.com/media/CHqc3UmUwAAwU4K.jpg'
 
   robot.respond /ぺろぺろ/i, (msg) ->
     msg.reply 'まったくどうしようもない変態さんですね'
