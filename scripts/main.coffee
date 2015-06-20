@@ -27,3 +27,6 @@ module.exports = (robot) ->
 
   robot.hear /(疲|つか)れた/i, (msg) ->
     msg.reply 'おつかれさまです先輩'
+
+  robot.respond /say (.+)/i, (msg) ->
+    robot.send { room: '#general' }, msg.match[1]
