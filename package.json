@@ -4,6 +4,9 @@
   "private": true,
   "author": "'ほと' <mail@hoto.me>",
   "description": "hoto-goma bot",
+  "scripts": {
+    "start": "bin/hubot"
+  },
   "dependencies": {
     "cheerio-httpcli": "^0.3.1",
     "cron": "^1.0.9",
