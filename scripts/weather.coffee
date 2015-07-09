@@ -15,10 +15,10 @@ module.exports = (robot) ->
     request url, (error,response,body) ->
       parser.parseString body, (err, result) ->
         info = result.rss.channel[0].item[0].description[0].replace(/- /,"")
-        info = replaceWeather(info)
-        robot.send {room: '#general' }, "今日の天気は " + info + " です"
+        robot.send {room: '#general' }, "今日の天気は " + replaceWeather(info) + " です"
         robot.send {room: '#general' }, "傘を忘れないでください" if info.match(/雨/)
 
   new CronJob('0 30 6 * * *', sendWeather, null, true)
 
+  # TODO どの部屋訊いても general につぶやいてしまうの修正する
   robot.respond(/天気/, sendWeather)
