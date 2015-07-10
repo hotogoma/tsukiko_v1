@@ -4,7 +4,8 @@ cronjob = (crontime, callback) ->
 
 module.exports = (robot) ->
 
-  robot.send { room: '#general' }, '＼＼\\\\ ٩( ‘ω’ )و //／／ﾃﾃｰﾝ'
+  # 起動時にﾃﾃｰﾝ
+  #robot.send { room: '#general' }, '＼＼\\\\ ٩( ‘ω’ )و //／／ﾃﾃｰﾝ'
 
   cronjob '0 30 6 * * 1-5', ->
     robot.send { room: '#general' }, '朝ですよ'
@@ -30,3 +31,11 @@ module.exports = (robot) ->
 
   robot.respond /say (.+)/i, (msg) ->
     robot.send { room: '#general' }, msg.match[1]
+
+  robot.respond /(花金|華金|はなきん)$/i, (msg) ->
+    msg.send '花金だーワッショーイ！テンションAGEAGEマック'
+
+  # 日本語版 ping (http://pasero.net/~mako/blog/s/679)
+  robot.respond /(((い|ゐ|居)(て?))(?!り)|(お|を|居)|((い|居)(て?)は)(?!ま))((る|ん(?=の))|((り?)ます)(?!ん))((の?ん?)(です)?|(んだ)(?!か))?(か(い?な?|よ|ね)?|(よ?)(ね|な))?\s?(\?|？)/i, (msg) ->
+    msg.send "はい、ここにいます!"
+
