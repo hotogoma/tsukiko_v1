@@ -27,6 +27,7 @@
     "mecab-async": "*",
     "q": "*",
     "request": "*",
+    "sprintf": "^0.1.5",
     "xml2js": "*",
     "xml2json": "*"
   },
