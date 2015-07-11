@@ -1,3 +1,6 @@
+// Description:
+//   別ファイルに切り出すまでもない設定はここに書く
+
 var getWeather = require('../lib/weather');
 
 module.exports = function(robot) {

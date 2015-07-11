@@ -1,4 +1,5 @@
-// 指定した時間になったらつぶやく系
+// Description:
+//   指定した時間になったらつぶやく系
 
 var cron = require('../lib/cron');
 var getWeather = require('../lib/weather');

@@ -1,4 +1,5 @@
-// 形態素解析する系
+// Description:
+//   形態素解析する系
 
 var MeCab = new require('mecab-async');
 var mecab = new MeCab();
