@@ -10,6 +10,7 @@
   "dependencies": {
     "cheerio-httpcli": "*",
     "cron": "*",
+    "gcloud": "*",
     "hubot": "*",
     "hubot-diagnostics": "*",
     "hubot-google-images": "*",
