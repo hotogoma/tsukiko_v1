@@ -33,4 +33,12 @@ module.exports = function(robot) {
     sendIR(msg, 'appletv_select', 'AppleTV をつけましたよ');
   });
 
+  robot.respond(/(電気|照明|ライト)(点|つ)けて/i, function(msg) {
+    sendIR(msg, 'light_on', '照明をつけましたよ');
+  });
+
+  robot.respond(/(電気|照明|ライト)(消|け)して/i, function(msg) {
+    sendIR(msg, 'light_off', '照明を消しましたよ');
+  });
+
 };
