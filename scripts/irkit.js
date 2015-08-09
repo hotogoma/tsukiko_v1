@@ -22,7 +22,7 @@ module.exports = function(robot) {
   });
 
   robot.respond(/エアコン(点|つ)けて/i, function(msg) {
-    sendIR(msg, 'aircon_on', 'テレビをつけましたよ');
+    sendIR(msg, 'aircon_on', 'エアコンをつけましたよ');
   });
 
   robot.respond(/エアコン(消|け)して/i, function(msg) {
