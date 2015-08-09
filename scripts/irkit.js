@@ -21,4 +21,12 @@ module.exports = function(robot) {
     sendIR(msg, 'tv_power', 'テレビを消しましたよ');
   });
 
+  robot.respond(/エアコン(点|つ)けて/i, function(msg) {
+    sendIR(msg, 'aircon_on', 'テレビをつけましたよ');
+  });
+
+  robot.respond(/エアコン(消|け)して/i, function(msg) {
+    sendIR(msg, 'aircon_off', 'エアコンを消しましたよ');
+  });
+
 };
