@@ -29,4 +29,8 @@ module.exports = function(robot) {
     sendIR(msg, 'aircon_off', 'エアコンを消しましたよ');
   });
 
+  robot.respond(/Apple\s?TV/i, function(msg) {
+    sendIR(msg, 'appletv_select', 'AppleTV をつけましたよ');
+  });
+
 };
