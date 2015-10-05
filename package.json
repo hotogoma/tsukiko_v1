@@ -17,6 +17,7 @@
     "hubot-google-translate": "*",
     "hubot-help": "*",
     "hubot-heroku-keepalive": "*",
+    "hubot-ifttt": "https://github.com/nagayama/hubot-ifttt/archive/master.tar.gz",
     "hubot-maps": "*",
     "hubot-misawa": "*",
     "hubot-redis-brain": "*",
