@@ -6,5 +6,5 @@ module.exports = (robot) ->
     year = d.getFullYear()
     month = d.getMonth() + 1
     day = d.getDay()
-    msg.send { room: '#general' }, year + month + day
+    msg.send { room: process.env.SLACK_MAIN_CHANNEL }, year + month + day
 

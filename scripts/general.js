@@ -22,7 +22,7 @@ module.exports = function(robot) {
   });
 
   robot.respond(/say (.+)/i, function(msg) {
-    robot.send({ room: '#general' }, msg.match[1]);
+    robot.send({ room: process.env.SLACK_MAIN_CHANNEL }, msg.match[1]);
   });
 
   robot.respond(/(花金|華金|はなきん)$/i, function(msg) {

@@ -5,7 +5,7 @@ var cron = require('../lib/cron');
 var getWeather = require('../lib/weather');
 var date2sekki = require('../lib/date2sekki');
 
-var options = { room: '#general' };
+var options = { room: process.env.SLACK_MAIN_CHANNEL };
 
 module.exports = function(robot) {
 

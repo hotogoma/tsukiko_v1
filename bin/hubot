@@ -10,4 +10,8 @@ if [ -d $HEROKU_PATH ]; then
   export PATH="$HEROKU_PATH:$PATH"
 fi
 
+if [ -z $SLACK_MAIN_CHANNEL ]; then
+  export SLACK_MAIN_CHANNEL="#general"
+fi
+
 exec node_modules/.bin/hubot --name "tsukiko" "$@"

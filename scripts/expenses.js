@@ -62,7 +62,7 @@ module.exports = function(robot) {
 
   // 毎月 10 日に支出入力の催促
   cron('0 0 19 10 * *', function() {
-    robot.send({ room: '#general', user: { name: 'hoto' } }, '先月の支出を入力してくださいね');
+    robot.send({ room: process.env.SLACK_MAIN_CHANNEL, user: { name: 'hoto' } }, '先月の支出を入力してくださいね');
   });
 
 };
