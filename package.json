@@ -10,6 +10,7 @@
   "dependencies": {
     "cheerio-httpcli": "*",
     "cron": "*",
+    "express-ifttt": "*",
     "gcloud": "*",
     "hubot": "*",
     "hubot-diagnostics": "*",
@@ -17,7 +18,6 @@
     "hubot-google-translate": "*",
     "hubot-help": "*",
     "hubot-heroku-keepalive": "*",
-    "hubot-ifttt": "https://github.com/nagayama/hubot-ifttt/archive/master.tar.gz",
     "hubot-maps": "*",
     "hubot-misawa": "*",
     "hubot-redis-brain": "*",
@@ -28,11 +28,11 @@
     "mecab-async": "*",
     "q": "*",
     "request": "*",
-    "sprintf": "^0.1.5",
+    "sprintf": "*",
     "xml2js": "*",
     "xml2json": "*"
   },
   "engines": {
-    "node": "0.12.x"
+    "node": "0.12"
   }
 }

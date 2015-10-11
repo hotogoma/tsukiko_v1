@@ -6,6 +6,5 @@
   "hubot-maps",
   "hubot-misawa",
   "hubot-redis-brain",
-  "hubot-youtube",
-  "hubot-ifttt"
+  "hubot-youtube"
 ]
