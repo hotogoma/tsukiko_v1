@@ -29,6 +29,7 @@
     "q": "*",
     "request": "*",
     "sprintf": "*",
+    "sudden-death": "*",
     "xml2js": "*",
     "xml2json": "*"
   },
