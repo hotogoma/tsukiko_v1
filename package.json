@@ -1,6 +1,6 @@
 {
   "name": "tsukiko",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "author": "'ほと' <mail@hoto.me>",
   "description": "hoto-goma bot",
@@ -33,6 +33,6 @@
     "xml2json": "*"
   },
   "engines": {
-    "node": "0.12"
+    "node": "4.2"
   }
 }
