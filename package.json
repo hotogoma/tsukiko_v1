@@ -25,6 +25,7 @@
     "hubot-scripts": "*",
     "hubot-slack": "*",
     "hubot-youtube": "*",
+    "kuromoji": "*",
     "q": "*",
     "request": "*",
     "sprintf": "*",
