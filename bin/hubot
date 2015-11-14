@@ -5,11 +5,6 @@ set -e
 npm install
 export PATH="node_modules/.bin:node_modules/hubot/node_modules/.bin:$PATH"
 
-HEROKU_PATH="/app/vendor/mecab/bin"
-if [ -d $HEROKU_PATH ]; then
-  export PATH="$HEROKU_PATH:$PATH"
-fi
-
 if [ -z $SLACK_MAIN_CHANNEL ]; then
   export SLACK_MAIN_CHANNEL="#general"
 fi

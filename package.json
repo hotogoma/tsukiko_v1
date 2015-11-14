@@ -25,7 +25,6 @@
     "hubot-scripts": "*",
     "hubot-slack": "*",
     "hubot-youtube": "*",
-    "mecab-async": "*",
     "q": "*",
     "request": "*",
     "sprintf": "*",
