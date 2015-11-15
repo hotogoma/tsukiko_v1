@@ -1,6 +1,6 @@
-/**
- * IFTTT
- */
+// Description:
+//   IFTTT
+
 var IFTTT = require('../lib/ifttt');
 
 var options = { room: process.env.SLACK_MAIN_CHANNEL };

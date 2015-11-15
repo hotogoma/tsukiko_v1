@@ -48,6 +48,7 @@ var formatReport = function(all, thisMonth, lastMonth) {
 };
 
 module.exports = function(robot) {
+  if ( ! expenses.enable() ) { return; }
 
   robot.respond(/支出/i, function(msg) {
     expenses.getReport(function(err, all, thisMonth, lastMonth) {
