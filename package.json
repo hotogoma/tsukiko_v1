@@ -26,7 +26,6 @@
     "hubot-slack": "*",
     "hubot-youtube": "*",
     "kuromoji": "*",
-    "q": "*",
     "request": "*",
     "sprintf": "*",
     "sudden-death": "*",
