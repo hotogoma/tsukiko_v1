@@ -3,7 +3,7 @@ var hpMin = 0;
 var cron = require('../lib/cron');
 
 module.exports = function(robot) {
-  cron('0 0 9 * * 7', function() {
+  cron('0 0 9 * * 6', function() {
     var list = robot.brain.data;
     for(var key in list._private){
       robot.brain.set(key, hpMax);
@@ -12,11 +12,11 @@ module.exports = function(robot) {
 
   robot.respond(/attack (\w+)/i, function(msg) {
     var user = msg.match[1];
-    var hp = robot.brain.get(user) || hpMax;
+    var hp = robot.brain.get(user);
     hp = (hp !== null) ? hp : hpMax;
     hp = Math.max(hp - 10, hpMin);
     robot.brain.set(user, hp);
-    msg.reply(user + 'は攻撃された' + 'HP' + robot.brain.get(user) + '/' + hpMax);
+    msg.reply(user + 'は攻撃された' + 'HP' + hp + '/' + hpMax);
   });
 
   robot.respond(/care (\w+)/i, function(msg) {
@@ -25,7 +25,7 @@ module.exports = function(robot) {
     hp = (hp !== null) ? hp : hpMax;
     hp = Math.min(hp + 10, hpMax);
     robot.brain.set(user, hp);
-    msg.reply(user + 'は回復した' + 'HP' + robot.brain.get(user) + '/' + hpMax);
+    msg.reply(user + 'は回復した' + 'HP' + hp + '/' + hpMax);
   });
 
   robot.respond(/status/, function(msg) {
