@@ -1,7 +1,6 @@
 var hpMax = 100;
 var hpMin = 0;
 var cron = require('../lib/cron');
-
 var options = { room: process.env.SLACK_MAIN_CHANNEL };
 
 module.exports = function(robot) {
@@ -19,7 +18,7 @@ module.exports = function(robot) {
     hp = (hp !== null) ? hp : hpMax;
     hp = Math.max(hp - 10, hpMin);
     robot.brain.set(user, hp);
-    msg.reply(user + 'は攻撃された' + 'HP' + hp + '/' + hpMax);
+    msg.reply(`${user}は攻撃された. HP: ${hp}/${hpMax}`);
   });
 
   robot.respond(/care (\w+)/i, function(msg) {
@@ -28,14 +27,14 @@ module.exports = function(robot) {
     hp = (hp !== null) ? hp : hpMax;
     hp = Math.min(hp + 10, hpMax);
     robot.brain.set(user, hp);
-    msg.reply(user + 'は回復した' + 'HP' + hp + '/' + hpMax);
+    msg.reply(`${user}回復した. HP: ${hp}/${hpMax}`);
   });
 
   robot.respond(/status/, function(msg) {
     var list = robot.brain.data;
     var status = new Array();
     for(var key in list._private){
-      status.push(key + ' HP:' + list._private[key] + '/' + hpMax);
+      status.push(`${key} HP: ${list._private[key]}/${hpMax}`);
     }
     msg.reply(status.join("\n"));
   });
