@@ -34,7 +34,9 @@ module.exports = function(robot) {
     var list = robot.brain.data;
     var status = new Array();
     for(var key in list._private){
-      status.push(`${key} HP: ${list._private[key]}/${hpMax}`);
+      if(typeof(list._private[key]) === 'number' ){
+        status.push(`${key} HP: ${list._private[key]}/${hpMax}`);
+      }
     }
     msg.reply(status.join("\n"));
   });
