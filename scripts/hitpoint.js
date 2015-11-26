@@ -49,8 +49,7 @@ module.exports = function(robot) {
     var hp = robot.brain.get(user);
     hp = attack(hp, point);
     robot.brain.set(user, hp);
-    msg.reply(`${user}は${magicName}で攻撃された. ${point}のダメージ！
-      HP: ${hp}/${hpMax}`);
+    msg.reply(`${user}は${magicName}で攻撃された. ${point}のダメージ！\nHP: ${hp}/${hpMax}`);
   });
 };
 
@@ -63,4 +62,5 @@ function attack(hp, damage){
 function care(hp, point){
     hp = (hp !== null) ? hp : hpMax;
     hp = Math.min(hp + 10, hpMax);
+    return hp;
 }
