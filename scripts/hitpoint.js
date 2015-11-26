@@ -43,9 +43,9 @@ module.exports = function(robot) {
 
   robot.respond(/magic (\w+)/i, function(msg){
     var user = msg.match[1];
-    var magicNum = Math.floor(Math.random() * magic.list.length);
-    var magicName = magic.list[magicNum].name;
-    var point = magic.list[magicNum].point;
+    var magicNum = Math.floor(Math.random() * magic.length);
+    var magicName = magic[magicNum].name;
+    var point = magic[magicNum].point;
     var hp = robot.brain.get(user);
     hp = attack(hp, point);
     robot.brain.set(user, hp);
