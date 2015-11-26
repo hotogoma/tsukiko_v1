@@ -1,0 +1,10 @@
+[
+  { "name": "サンダー", "point": 5 },
+  { "name": "ファイアー", "point": 5 },
+  { "name": "ウォータ", "point": 5 },
+  { "name": "ブリザド", "point": 5 },
+  { "name": "サンダガ", "point": 20 },
+  { "name": "ファイガ", "point": 20 },
+  { "name": "ウォータガ", "point": 20 },
+  { "name": "ブリザガ", "point": 20 }
+]
