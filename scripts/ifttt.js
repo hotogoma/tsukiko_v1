@@ -1,21 +1,22 @@
 // Description:
 //   IFTTT
+'use strict';
 
-var IFTTT = require('../lib/ifttt');
+let IFTTT = require('../lib/ifttt');
 
-var options = { room: process.env.SLACK_MAIN_CHANNEL };
+const options = { room: process.env.SLACK_MAIN_CHANNEL };
 
-module.exports = function(robot) {
-  var ifttt = new IFTTT(robot);
+module.exports = (robot) => {
+  let ifttt = new IFTTT(robot);
 
   // 退社を通知
-  ifttt.on('leftOffice', function(data) {
-    var date = new Date();
+  ifttt.on('leftOffice', (data) => {
+    let date = new Date();
     // 土日は通知しない
     if ( date.getDay() % 6 === 0 ) { return; }
     // 昼までは通知しない
     if ( date.getHours() < 16 ) { return; }
-    robot.send(options, '【' + data.description + '】ﾀｲｼｬ!!');
+    robot.send(options, `【 ${data.description} 】ﾀｲｼｬ!!`);
   });
 
 };
