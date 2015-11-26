@@ -11,29 +11,20 @@
     "start": "nf start"
   },
   "dependencies": {
-    "cheerio-httpcli": "*",
     "cron": "*",
     "express-ifttt": "*",
     "gcloud": "*",
     "hubot": "*",
-    "hubot-diagnostics": "*",
     "hubot-google-images": "*",
-    "hubot-google-translate": "*",
     "hubot-help": "*",
     "hubot-heroku-keepalive": "*",
-    "hubot-maps": "*",
-    "hubot-misawa": "*",
     "hubot-redis-brain": "*",
-    "hubot-rules": "*",
-    "hubot-scripts": "*",
     "hubot-slack": "*",
-    "hubot-youtube": "*",
     "kuromoji": "*",
     "request": "*",
     "sprintf": "*",
     "sudden-death": "*",
-    "xml2js": "*",
-    "xml2json": "*"
+    "xml2js": "*"
   },
   "devDependencies": {
     "foreman": "*"

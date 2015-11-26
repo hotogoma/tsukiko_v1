@@ -1,11 +1,12 @@
 // Description:
 //   突然の死
+'use strict';
 
-var SuddenDeath = require('sudden-death');
+let SuddenDeath = require('sudden-death');
 
-module.exports = function(robot) {
+module.exports = (robot) => {
 
-  robot.hear(/^突然の(.*)$/, function(msg) {
+  robot.hear(/^突然の(.*)$/, (msg) => {
     msg.send( new SuddenDeath( msg.match[1] ).say() );
   });
 
