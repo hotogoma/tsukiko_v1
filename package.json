@@ -4,8 +4,11 @@
   "private": true,
   "author": "'ほと' <mail@hoto.me>",
   "description": "hoto-goma bot",
+  "engines": {
+    "node": "4.2"
+  },
   "scripts": {
-    "start": "bin/hubot"
+    "start": "nf start"
   },
   "dependencies": {
     "cheerio-httpcli": "*",
@@ -32,7 +35,7 @@
     "xml2js": "*",
     "xml2json": "*"
   },
-  "engines": {
-    "node": "4.2"
+  "devDependencies": {
+    "foreman": "*"
   }
 }
