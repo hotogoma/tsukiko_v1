@@ -5,6 +5,10 @@ var getWeather = require('../lib/weather');
 
 module.exports = function(robot) {
 
+  robot.respond(/PING$/i, function(msg) {
+    msg.reply('PONG!');
+  });
+
   robot.respond(/ぺろぺろ/i, function(msg) {
     msg.reply('まったくどうしようもない変態さんですね');
   });
