@@ -4,8 +4,12 @@
   "private": true,
   "author": "'ほと' <mail@hoto.me>",
   "description": "hoto-goma bot",
+  "engines": {
+    "node": "4.2"
+  },
   "scripts": {
-    "start": "bin/hubot"
+    "start": "bin/hubot",
+    "slack": "nf start"
   },
   "dependencies": {
     "cron": "*",
@@ -23,7 +27,7 @@
     "sudden-death": "*",
     "xml2js": "*"
   },
-  "engines": {
-    "node": "4.2"
+  "devDependencies": {
+    "foreman": "*"
   }
 }
