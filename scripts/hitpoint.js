@@ -19,8 +19,7 @@ module.exports = function(robot) {
     var point = 10;
     hp = attack(hp, point);
     robot.brain.set(user, hp);
-    msg.reply(`${user}は攻撃された. ${point}のダメージ！
-      HP: ${hp}/${hpMax}`);
+    msg.reply(`${user}は攻撃された. ${point}のダメージ！\nHP: ${hp}/${hpMax}`);
   });
 
   robot.respond(/care (\w+)/i, function(msg) {
