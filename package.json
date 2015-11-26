@@ -8,7 +8,8 @@
     "node": "4.2"
   },
   "scripts": {
-    "start": "nf start"
+    "start": "bin/hubot",
+    "slack": "nf start"
   },
   "dependencies": {
     "cron": "*",
