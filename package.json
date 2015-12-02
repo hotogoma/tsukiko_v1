@@ -19,7 +19,7 @@
     "hubot-google-images": "*",
     "hubot-help": "*",
     "hubot-heroku-keepalive": "*",
-    "hubot-middleware-kuromoji": "*",
+    "hubot-middleware-kuromoji": "^0.1.4",
     "hubot-redis-brain": "*",
     "hubot-slack": "*",
     "request": "*",
