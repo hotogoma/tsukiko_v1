@@ -19,7 +19,7 @@ module.exports = function(robot) {
     var point = 10;
     hp = attack(hp, point);
     robot.brain.set(user, hp);
-    msg.reply(`${user}は攻撃された. ${point}のダメージ！\nHP: ${hp}/${hpMax}`);
+    msg.send(`${user}は攻撃された. ${point}のダメージ！\nHP: ${hp}/${hpMax}`);
   });
 
   robot.respond(/care (\w+)/i, function(msg) {
@@ -28,7 +28,7 @@ module.exports = function(robot) {
     var point = 10;
     hp = care(hp, point);
     robot.brain.set(user, hp);
-    msg.reply(`${user}回復した. HP: ${hp}/${hpMax}`);
+    msg.send(`${user}回復した. HP: ${hp}/${hpMax}`);
   });
 
   robot.respond(/status/, function(msg) {
@@ -37,7 +37,7 @@ module.exports = function(robot) {
     for(var key in list._private){
       status.push(`${key} HP: ${list._private[key]}/${hpMax}`);
     }
-    msg.reply(status.join("\n"));
+    msg.send(status.join("\n"));
   });
 
   robot.respond(/magic (\w+)/i, function(msg){
@@ -48,7 +48,7 @@ module.exports = function(robot) {
     var hp = robot.brain.get(user);
     hp = attack(hp, point);
     robot.brain.set(user, hp);
-    msg.reply(`${user}は${magicName}で攻撃された. ${point}のダメージ！\nHP: ${hp}/${hpMax}`);
+    msg.send(`${user}は${magicName}で攻撃された. ${point}のダメージ！\nHP: ${hp}/${hpMax}`);
   });
 
   // タイムラインを全て形態素解析する
@@ -63,7 +63,7 @@ module.exports = function(robot) {
       if ( /((疲|つか)れる)|((辛|つら)い)|((眠|ねむ)い)/.test(token.basic_form) ) {
         hp = attack(hp, point);
         robot.brain.set(user, hp);
-        msg.reply(`${user}は攻撃された. ${point}のダメージ！\nHP: ${hp}/${hpMax}`);
+        msg.send(`${user}は攻撃された. ${point}のダメージ！\nHP: ${hp}/${hpMax}`);
       }
     });
   });
