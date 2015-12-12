@@ -1,10 +1,7 @@
 [
-  "hubot-diagnostics",
+  "hubot-google-images",
   "hubot-help",
   "hubot-heroku-keepalive",
-  "hubot-google-images",
-  "hubot-maps",
-  "hubot-misawa",
-  "hubot-redis-brain",
-  "hubot-youtube"
+  "hubot-middleware-kuromoji",
+  "hubot-redis-brain"
 ]
