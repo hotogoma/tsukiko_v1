@@ -2,8 +2,6 @@ var hpMax = 100;
 var hpMin = 0;
 var cron = require('../lib/cron');
 var magic = require('../magic.json');
-var Kuromoji = require('../lib/kuromoji');
-kuromoji = new Kuromoji();
 var options = { room: process.env.SLACK_MAIN_CHANNEL };
 
 module.exports = function(robot) {
@@ -55,23 +53,20 @@ module.exports = function(robot) {
 
   // タイムラインを全て形態素解析する
   robot.hear(/.*/, function(msg) {
-    var parsed = kuromoji.tokenize( msg.message.text );
-    if ( ! parsed ) { return; }
+    if ( ! msg.message.tokenized ) { return; }
+    var user = msg.message.user.name;
+    var hp = robot.brain.get(user);
+    var point = 5;
 
     // ネガティブワードをキャッチする
-    parsed.forEach(function(token) {
+    msg.message.tokenized.forEach(function(token) {
       if ( /((疲|つか)れる)|((辛|つら)い)|((眠|ねむ)い)/.test(token.basic_form) ) {
-        var user = msg.message.user.name;
-        var hp = robot.brain.get(user);
-        var point = 5;
         hp = attack(hp, point);
         robot.brain.set(user, hp);
         msg.reply(`${user}は攻撃された. ${point}のダメージ！\nHP: ${hp}/${hpMax}`);
       }
     });
-
   });
-
 };
 
 function attack(hp, damage){
