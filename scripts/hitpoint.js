@@ -63,7 +63,7 @@ module.exports = function(robot) {
       if ( /((疲|つか)れる)|((辛|つら)い)|((眠|ねむ)い)/.test(token.basic_form) ) {
         hp = attack(hp, point);
         robot.brain.set(user, hp);
-        msg.send(`${user}は攻撃された. ${point}のダメージ！\nHP: ${hp}/${hpMax}`);
+        msg.send(`${user}は社会から攻撃を受けた！${point}のダメージ！\nHP: ${hp}/${hpMax}`);
       }
     });
   });
