@@ -16,7 +16,7 @@ module.exports = function(robot) {
   robot.respond(/attack (\w+)/i, function(msg) {
     var user = msg.match[1];
     var damage = 10;
-    hp = attack(user, damage);
+    var hp = attack(user, damage);
     msg.send(`${user}は攻撃された. ${damage}のダメージ！\nHP: ${hp}/${hpMax}`);
   });
 
