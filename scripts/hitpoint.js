@@ -24,7 +24,7 @@ module.exports = function(robot) {
     var user = msg.match[1];
     var point = 10;
     var hp = care(user, point);
-    msg.send(`${user}回復した. HP: ${hp}/${hpMax}`);
+    msg.send(`${user}は${point}回復した. HP: ${hp}/${hpMax}`);
   });
 
   robot.respond(/status/, function(msg) {
