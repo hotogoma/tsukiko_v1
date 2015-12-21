@@ -23,6 +23,7 @@
     "hubot-redis-brain": "*",
     "hubot-slack": "*",
     "request": "*",
+    "serve-static": "*",
     "sprintf": "*",
     "sudden-death": "*",
     "xml2js": "*"
