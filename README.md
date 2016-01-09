@@ -1,2 +1,2 @@
 # まったくどうしようもない変態さんですね
-![](./tsukiko.jpg)
+![](./public/assets/tsukiko.jpg)
