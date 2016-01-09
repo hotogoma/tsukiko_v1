@@ -10,8 +10,6 @@ var hpMax = 100;
 var hpMin = 0;
 var cron = require('../lib/cron');
 var magic = require('../magic.json');
-var Kuromoji = require('../lib/kuromoji');
-kuromoji = new Kuromoji();
 var options = { room: process.env.SLACK_MAIN_CHANNEL };
 
 module.exports = function(robot) {
@@ -34,7 +32,7 @@ module.exports = function(robot) {
     var user = msg.match[1];
     var point = 10;
     var hp = care(user, point);
-    msg.send(`${user}回復した. HP: ${hp}/${hpMax}`);
+    msg.send(`${user}は${point}回復した. HP: ${hp}/${hpMax}`);
   });
 
   robot.respond(/status/, function(msg) {
