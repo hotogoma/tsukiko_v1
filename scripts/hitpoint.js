@@ -1,3 +1,11 @@
+// Description:
+//   HP が増えたり減ったりするやつ
+// Commands:
+//   hubot attack <user name> - 攻撃
+//   hubot care <username> - 回復
+//   hubot status - ステータス表示
+//   hubot magic <username> - 魔法攻撃
+
 var hpMax = 100;
 var hpMin = 0;
 var cron = require('../lib/cron');
