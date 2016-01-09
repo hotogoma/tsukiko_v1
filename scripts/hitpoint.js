@@ -10,8 +10,6 @@ var hpMax = 100;
 var hpMin = 0;
 var cron = require('../lib/cron');
 var magic = require('../magic.json');
-var Kuromoji = require('../lib/kuromoji');
-kuromoji = new Kuromoji();
 var options = { room: process.env.SLACK_MAIN_CHANNEL };
 
 module.exports = function(robot) {
