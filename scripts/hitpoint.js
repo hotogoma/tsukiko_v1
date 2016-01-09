@@ -1,3 +1,6 @@
+// Description:
+//   HP が増えたり減ったりするやつ
+
 var hpMax = 100;
 var hpMin = 0;
 var cron = require('../lib/cron');
