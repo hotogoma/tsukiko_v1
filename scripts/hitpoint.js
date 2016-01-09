@@ -1,5 +1,10 @@
 // Description:
 //   HP が増えたり減ったりするやつ
+// Commands:
+//   hubot attack <user name> - 攻撃
+//   hubot care <username> - 回復
+//   hubot status - ステータス表示
+//   hubot magic <username> - 魔法攻撃
 
 var hpMax = 100;
 var hpMin = 0;
@@ -27,7 +32,7 @@ module.exports = function(robot) {
     var user = msg.match[1];
     var point = 10;
     var hp = care(user, point);
-    msg.send(`${user}回復した. HP: ${hp}/${hpMax}`);
+    msg.send(`${user}は${point}回復した. HP: ${hp}/${hpMax}`);
   });
 
   robot.respond(/status/, function(msg) {
