@@ -38,8 +38,4 @@ module.exports = (robot) => {
   });
 
   cron('0 0 19 * * 1-5', () => robot.send(options, '19時ですよ'));
-
-  // 平日前夜(日〜木) 22:00 に「ていうかもう寝よう」画像を貼る
-  cron('0 0 22 * * 1-4', () => robot.send(options, 'https://pbs.twimg.com/media/CHqc3UmUwAAwU4K.jpg'));
-
 };
