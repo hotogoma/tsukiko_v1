@@ -1,5 +1,7 @@
 // Description:
 //   家計
+// Commands:
+//   hubot 支出 - 先月の支出を表示
 'use strict';
 
 let expenses = require('../lib/expenses');

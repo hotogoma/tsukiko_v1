@@ -1,5 +1,11 @@
 // Description:
 //   別ファイルに切り出すまでもない設定はここに書く
+// Commands:
+//   hubot ping - PONG!
+//   hubot いる？ - 日本語版 ping
+//   hubot ぺろぺろ - まったくどうしようもない変態さんですね
+//   hubot 天気 - 今日の天気を表示
+//   hubot 花金 - 花金だーワッショーイ！テンションAGEAGEマック
 'use strict';
 
 let getWeather = require('../lib/weather');

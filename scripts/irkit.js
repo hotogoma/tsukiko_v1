@@ -1,5 +1,9 @@
 // Description:
 //   IRKit 関連
+// Commands:
+//   hubot テレビ(つけて|消して) - テレビを操作
+//   hubot エアコン(つけて|消して) - エアコンを操作
+//   hubot 電気(つけて|消して) - 照明を操作
 
 var irkit = require('../lib/irkit');
 
