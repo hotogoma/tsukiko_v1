@@ -12,7 +12,7 @@ const options = { room: process.env.SLACK_MAIN_CHANNEL };
 module.exports = (robot) => {
 
   // 毎朝
-  cron(`0 30 7 * * *`, () => {
+  cron(`0 0 7 * * *`, () => {
     let today = new Date();
 
     robot.send(options, '朝ですよ');
