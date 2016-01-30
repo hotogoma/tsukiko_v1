@@ -20,6 +20,14 @@ module.exports = function(robot) {
     min: hpMin
   });
 
+  cron('0 0 9 * * 6', function() {
+    var list = robot.brain.data;
+    for(var key in list._private){
+      hpMane.full_care();
+    }
+    robot.send(options, '全回復しました');
+  });
+
   robot.respond(/attack (\w+)/i, function(msg) {
     var user = msg.match[1];
     var damage = 10;
