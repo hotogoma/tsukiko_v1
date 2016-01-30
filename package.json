@@ -16,6 +16,7 @@
     "express-ifttt": "*",
     "gcloud": "*",
     "google-images": "*",
+    "hp-manager": "*",
     "hubot": "*",
     "hubot-help": "*",
     "hubot-heroku-keepalive": "*",
