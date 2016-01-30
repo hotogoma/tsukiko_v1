@@ -10,9 +10,15 @@ var cron = require('../lib/cron');
 var magic = require('../magic.json');
 var hpManager = require('hp-manager');
 var options = { room: process.env.SLACK_MAIN_CHANNEL };
+var hpMax = 100;
+var hpMin = 0;
 
 module.exports = function(robot) {
-  var hpMane = new hpManager({ db: robot.brain});
+  var hpMane = new hpManager({
+    db: robot.brain,
+    max: hpMax,
+    min: hpMin
+  });
 
   robot.respond(/attack (\w+)/i, function(msg) {
     var user = msg.match[1];
@@ -69,5 +75,18 @@ module.exports = function(robot) {
     msg.send(status.join("\n"));
   });
 
-
+  // タイムラインを全て形態素解析する
+  robot.hear(/.*/, function(msg) {
+    if ( ! msg.message.tokenized ) { return; }
+    var user = msg.message.user.name;
+    var damage = 5;
+    
+    // ネガティブワードをキャッチする
+    msg.message.tokenized.forEach(function(token) {
+      if ( /((疲|つか)れる)|((辛|つら)い)|((眠|ねむ)い)/.test(token.basic_form) ) {
+        var hp = hpMane.attack(user ,damage);
+        msg.send(`${user}は社会から攻撃を受けた！${damage}のダメージ！\nHP: ${hp}/${hpMax}`);
+      }
+    });
+  });
 };
