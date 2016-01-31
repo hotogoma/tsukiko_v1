@@ -52,13 +52,9 @@ module.exports = function(robot) {
 
   robot.respond(/status (\w+)/i, function(msg) {
     var user = msg.match[1];
-    var list = hpMane.status(user);
-    var status = new Array();
+    var status = hpMane.status(user);
 
-    for(var key in list){
-      status.push(`${key} HP: ${list[key]}/${hpMax}`);
-    }
-    msg.send(status.join("\n"));
+    msg.send(`HP: ${status[user]}/${hpMax}`);
   });
 
   robot.respond(/magic (\w+)/i, function(msg){
