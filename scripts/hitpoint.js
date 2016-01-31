@@ -22,9 +22,7 @@ module.exports = function(robot) {
 
   cron('0 0 9 * * 6', function() {
     var list = robot.brain.data;
-    for(var key in list._private){
-      hpMane.full_care();
-    }
+    hpMane.full_care();
     robot.send(options, '全回復しました');
   });
 
