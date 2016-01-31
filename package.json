@@ -23,6 +23,7 @@
     "hubot-middleware-kuromoji": "^0.1.4",
     "hubot-redis-brain": "*",
     "hubot-slack": "*",
+    "node-trello": "*",
     "request": "*",
     "serve-static": "*",
     "sprintf": "*",
