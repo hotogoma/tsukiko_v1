@@ -17,7 +17,7 @@ module.exports = (robot) => {
   robot.hear(/^月子ちゃん$/i, (msg) => msg.reply('なんですか'));
   robot.hear(/(疲|つか)れた/i, (msg) => msg.reply('おつかれさまです先輩'));
 
-  robot.respond(/天気/, (msg) => getWeather((_, emoji) => msg.send('今日の天気は ' + emoji + ' です')));
+  robot.respond(/天気/, (msg) => getWeather().then((weather) => msg.send(`明日の天気は ${weather.description} です`)));
 
   robot.respond(/(花金|華金|はなきん)$/i, (msg) => msg.send('花金だーワッショーイ！テンションAGEAGEマック'));
 
