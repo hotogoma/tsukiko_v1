@@ -20,23 +20,22 @@ module.exports = (robot) => {
 
     robot.send(options, '朝ですよ');
 
-    shukjiz.check(today, (holiday) => {
-      let dateStr = sprintf('%02d月%02d日(%s%s)%s です',
-        today.getMonth() + 1,
-        today.getDate(),
-        '日月火水木金土'.charAt( today.getDay() ),
-        holiday ? holiday : '',
-        holiday ? ` ${holiday}` : ''
-      );
-      robot.send(options, dateStr);
+    let holiday = shukjitz.checkSync(today);
+    let dateStr = sprintf('%02d月%02d日(%s%s)%s です',
+      today.getMonth() + 1,
+      today.getDate(),
+      '日月火水木金土'.charAt( today.getDay() ),
+      holiday ? '祝' : '',
+      holiday ? ` ${holiday}` : ''
+    );
+    robot.send(options, dateStr);
 
-      // 二十四節気の日だったらつぶやく
-      let sekki = date2sekki( today );
-      if ( sekki ) {
-        robot.send(options, `本日は ${sekki[0]} です`);
-        robot.send(options, sekki[1] + '〜');
-      }
-    });
+    // 二十四節気の日だったらつぶやく
+    let sekki = date2sekki( today );
+    if ( sekki ) {
+      robot.send(options, `本日は ${sekki[0]} です`);
+      robot.send(options, sekki[1] + '〜');
+    }
   });
 
   cron(`0 0 22 * * *`, () => {
