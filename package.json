@@ -26,6 +26,7 @@
     "node-trello": "*",
     "request": "*",
     "serve-static": "*",
+    "shukjitz": "*",
     "sprintf": "*",
     "sudden-death": "*",
     "xml2js": "*"
