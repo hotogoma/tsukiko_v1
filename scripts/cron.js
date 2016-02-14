@@ -59,9 +59,9 @@ module.exports = (robot) => {
         break;
     }
 
-    // 今日の天気
+    // 明日の天気
     getWeather().then((weather) => {
-      robot.send(options, `今日の天気は ${weather.description} です`);
+      robot.send(options, `明日の天気は ${weather.description} です`);
       if ( weather.weather.match(/雨/) ) {
         robot.send(options, '傘を忘れないでください');
       }
