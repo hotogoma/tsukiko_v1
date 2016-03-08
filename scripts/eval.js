@@ -4,6 +4,9 @@
 //   hubot eval <code> - JavaScript のコードを実行する
 'use strict';
 var vm = require('vm');
+var util = require('util');
+
+const options = { room: process.env.SLACK_MAIN_CHANNEL };
 
 const resultKey = '__EVAL_RESULT__';
 const timeout = 1000; // msec
@@ -14,12 +17,8 @@ module.exports = (robot) => {
     try {
       code = resultKey + '=' + code;
       let context = { [resultKey]: undefined };
-      let options = { timeout };
-      vm.runInNewContext(code, context, options);
-      let result = context[resultKey];
-      return typeof result === 'object' && ! Array.isArray(result)
-        ? JSON.stringify(result, undefined, "\t")
-        : result;
+      vm.runInNewContext(code, context, { timeout });
+      return util.inspect( context[resultKey] );
     }
     catch (e) {
       return e.toString();
@@ -27,7 +26,7 @@ module.exports = (robot) => {
   }
 
   robot.respond(/eval (.+)$/i, (msg) => {
-    msg.send( safeEval( msg.match[1] ) );
+    robot.send(options, safeEval( msg.match[1] ));
   });
 
 };
