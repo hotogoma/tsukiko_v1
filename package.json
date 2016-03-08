@@ -5,7 +5,7 @@
   "author": "'ほと' <mail@hoto.me>",
   "description": "hoto-goma bot",
   "engines": {
-    "node": "4.2"
+    "node": "4"
   },
   "scripts": {
     "start": "bin/hubot",
