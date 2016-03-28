@@ -74,11 +74,10 @@ module.exports = (robot) => {
   cron('0 0 19 * * 1-5', () => robot.send(options, '19時ですよ'));
 
   // 照明を自動点灯 
-  cron('0 * * * * 1-5', () => {
+  cron('0 0 8 * * 1-5', () => {
     irkit.messages(
       'light_on',
-      () => robot.send(options, '照明をつけました！いい加減起きてください！'),      // onSuccess
-      (errorMsg) => robot.send(options, errorMsg)
+      () => robot.send(options, '照明をつけました！いい加減起きてください！')      // onSuccess
     );
   });
 };
