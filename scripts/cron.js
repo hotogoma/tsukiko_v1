@@ -7,6 +7,7 @@ let cron = require('../lib/cron');
 let getWeather = require('../lib/weather');
 let date2sekki = require('../lib/date2sekki');
 let Shukjitz = require('shukjitz');
+let irkit = require('../lib/irkit');
 
 const options = { room: process.env.SLACK_MAIN_CHANNEL };
 
@@ -72,4 +73,12 @@ module.exports = (robot) => {
   // 平日夜
   cron('0 0 19 * * 1-5', () => robot.send(options, '19時ですよ'));
 
+  // 照明を自動点灯 
+  cron('0 * * * * 1-5', () => {
+      irkit.messages(
+        'light_on',
+        () => robot.send(options, '照明をつけました！いい加減起きてください！'),      // onSuccess
+        (errorMsg) => robot.send(options, errorMsg)
+        );
+  });
 };
