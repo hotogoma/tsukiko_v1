@@ -7,7 +7,7 @@
 //   hubot magic <username> - 魔法攻撃
 
 var cron = require('../lib/cron');
-var magic = require('../magic.json');
+var magic = require('../config/magic.json');
 var hpManager = require('hp-manager');
 var options = { room: process.env.SLACK_MAIN_CHANNEL };
 
@@ -80,7 +80,7 @@ module.exports = function(robot) {
     if ( ! msg.message.tokenized ) { return; }
     var user = msg.message.user.name;
     var damage = 5;
-    
+
     // ネガティブワードをキャッチする
     msg.message.tokenized.forEach(function(token) {
       if ( /((疲|つか)れる)|((辛|つら)い)|((眠|ねむ)い)/.test(token.basic_form) ) {
