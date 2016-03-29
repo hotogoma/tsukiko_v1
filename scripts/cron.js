@@ -16,7 +16,7 @@ module.exports = (robot) => {
   let shukjitz = new Shukjitz();
 
   // 毎朝
-  cron(`0 0 7 * * *`, () => {
+  cron('0 0 7 * * *', () => {
     let today = new Date();
 
     robot.send(options, '朝ですよ');
@@ -37,9 +37,15 @@ module.exports = (robot) => {
       robot.send(options, `本日は ${sekki[0]} です`);
       robot.send(options, sekki[1] + '〜');
     }
+
+    // 照明を点ける
+    irkit.messages('light_on');
   });
 
-  cron(`0 0 22 * * *`, () => {
+  // 9時には照明を消す
+  cron('0 0 9 * * *', () => irkit.messages('light_off'));
+
+  cron('0 0 22 * * *', () => {
     let tomorrow = new Date();
     tomorrow.setDate( tomorrow.getDate() + 1 );
 
@@ -72,15 +78,5 @@ module.exports = (robot) => {
 
   // 平日夜
   cron('0 0 19 * * 1-5', () => robot.send(options, '19時ですよ'));
-
-  // 照明を自動点灯
-  cron('0 0 8 * * 1-5', () => {
-    irkit.messages('light_on', () => {
-      robot.send(options, '照明をつけました！いい加減起きてください！');
-    });
-  });
-
-  // 9時には照明を消す
-  cron('0 0 9 * * 1-5', () => irkit.messages('light_off'));
 
 };
