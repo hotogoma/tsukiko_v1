@@ -73,10 +73,14 @@ module.exports = (robot) => {
   // 平日夜
   cron('0 0 19 * * 1-5', () => robot.send(options, '19時ですよ'));
 
-  // 照明を自動点灯 
+  // 照明を自動点灯
   cron('0 0 8 * * 1-5', () => {
     irkit.messages('light_on', () => {
       robot.send(options, '照明をつけました！いい加減起きてください！');
     });
   });
+
+  // 9時には照明を消す
+  cron('0 0 9 * * 1-5', () => irkit.messages('light_off'));
+
 };
