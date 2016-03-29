@@ -7,7 +7,7 @@ let cron = require('../lib/cron');
 let getWeather = require('../lib/weather');
 let date2sekki = require('../lib/date2sekki');
 let Shukjitz = require('shukjitz');
-let IRKit = require('../lib/irkit');
+let IRKit = require('irkit');
 let signals = require('../config/irkit.json');
 
 const options = { room: process.env.SLACK_MAIN_CHANNEL };

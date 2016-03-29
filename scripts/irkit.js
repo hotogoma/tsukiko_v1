@@ -5,7 +5,7 @@
 //   hubot エアコン(つけて|消して) - エアコンを操作
 //   hubot 電気(つけて|消して) - 照明を操作
 
-var IRKit = require('../lib/irkit');
+var IRKit = require('irkit');
 var signals = require('../config/irkit.json');
 
 module.exports = (robot) => {
