@@ -18,7 +18,7 @@ module.exports = (robot) => {
   let irkit = new IRKit();
 
   // 毎朝
-  cron('0 0 7 * * *', () => {
+  cron('0 30 7 * * *', () => {
     let today = new Date();
 
     robot.send(options, '朝ですよ');
@@ -42,9 +42,9 @@ module.exports = (robot) => {
 
   });
 
-  // 7時に照明を点ける / 9時に照明を消す
+  // 7時半に照明を点ける / 9時に照明を消す
   if ( irkit.available() ) {
-    cron('0 0 7 * * *', () => irkit.send( signals.light.on  ));
+    cron('0 30 7 * * *', () => irkit.send( signals.light.on ));
     cron('0 0 9 * * *', () => irkit.send( signals.light.off ));
   }
 
