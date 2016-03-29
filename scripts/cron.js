@@ -7,13 +7,15 @@ let cron = require('../lib/cron');
 let getWeather = require('../lib/weather');
 let date2sekki = require('../lib/date2sekki');
 let Shukjitz = require('shukjitz');
-let irkit = require('../lib/irkit');
+let IRKit = require('irkit');
+let signals = require('../config/irkit.json');
 
 const options = { room: process.env.SLACK_MAIN_CHANNEL };
 
 module.exports = (robot) => {
 
   let shukjitz = new Shukjitz();
+  let irkit = new IRKit();
 
   // 毎朝
   cron('0 0 7 * * *', () => {
@@ -38,12 +40,13 @@ module.exports = (robot) => {
       robot.send(options, sekki[1] + '〜');
     }
 
-    // 照明を点ける
-    irkit.messages('light_on');
   });
 
-  // 9時には照明を消す
-  cron('0 0 9 * * *', () => irkit.messages('light_off'));
+  // 7時に照明を点ける / 9時に照明を消す
+  if ( irkit.available() ) {
+    cron('0 0 7 * * *', () => irkit.send( signals.light.on  ));
+    cron('0 0 9 * * *', () => irkit.send( signals.light.off ));
+  }
 
   cron('0 0 22 * * *', () => {
     let tomorrow = new Date();
