@@ -5,7 +5,7 @@
   "author": "'ほと' <mail@hoto.me>",
   "description": "hoto-goma bot",
   "engines": {
-    "node": "4"
+    "node": "6"
   },
   "scripts": {
     "start": "bin/hubot",
@@ -21,7 +21,7 @@
     "hubot": "*",
     "hubot-help": "*",
     "hubot-heroku-keepalive": "*",
-    "hubot-middleware-kuromoji": "^0.1.4",
+    "hubot-middleware-kuromoji": "^0.2.0",
     "hubot-redis-brain": "*",
     "hubot-slack": "*",
     "irkit": "*",
