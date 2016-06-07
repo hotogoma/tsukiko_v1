@@ -14,40 +14,37 @@ function diffVal(v1, v2) {
   return flag + diff;
 }
 
-function formatReport(all, thisMonth, lastMonth) {
-  let messages = ['先月の支出まとめですよ', ''];
+function report2fields(all, thisMonth, lastMonth) {
+  var fields = [];
 
   ['電気', '水道', 'ガス', 'ネット', '携帯', 'AWS'].map(function(type) {
-    if ( thisMonth[type] ) {
-      let message = sprintf('%s: %s 円 ( 前月 %s 円, 平均 %s 円 )',
-        type,
-        thisMonth[type].sum,
-        lastMonth[type] ? diffVal(thisMonth[type].sum, lastMonth[type].sum) : '-',
-        all[type] ? diffVal(thisMonth[type].sum, all[type].average) : '-'
-      );
-      messages.push( message );
-    }
+    if ( ! thisMonth[type] ) { return; }
+    let diff = lastMonth[type] ? diffVal(thisMonth[type].sum, lastMonth[type].sum) : '-';
+    let avg = all[type] ? diffVal(thisMonth[type].sum, all[type].average) : '-';
+    fields.push({
+      title: `${type} ${thisMonth[type].sum} 円`,
+      value: [ `前月 ${diff} 円`, `平均 ${avg} 円` ].join("\n"),
+      short: true,
+    });
   });
 
   ['Suica', 'イベント', 'その他'].map(function(type) {
-    if ( thisMonth[type] ) {
-      let message = sprintf('%s: %s 円 ( 前月 %s 円 )',
-        type,
-        thisMonth[type].sum,
-        diffVal(thisMonth[type].sum, lastMonth[type] ? lastMonth[type].sum : 0)
-      );
-      messages.push( message );
-    }
+    if ( ! thisMonth[type] ) { return; }
+    let diff = diffVal(thisMonth[type].sum, lastMonth[type] ? lastMonth[type].sum : 0);
+    fields.push({
+      title: `${type} ${thisMonth[type].sum} 円`,
+      value: `前月 ${diff} 円`,
+      short: true,
+    });
   });
 
-  messages.push('- - - - - - - - - - - - - - - -');
-  let message = sprintf('合計: %s 円 ( 前月 %s 円 ) ※ 家賃・奨学金返済 なども含む',
-    thisMonth.total,
-    diffVal(thisMonth.total, lastMonth.total)
-  );
-  messages.push( message );
+  fields.push({
+    title: `合計 ${thisMonth.total} 円 (家賃含む)`,
+    value: `前月 ${diffVal(thisMonth.total, lastMonth.total)} 円`,
+    short: false,
+  });
 
-  return messages;
+  return fields;
 }
 
 module.exports = (robot) => {
@@ -59,8 +56,17 @@ module.exports = (robot) => {
         msg.send('支出情報の参照に失敗しましたよ');
         return;
       }
-      let messages = formatReport(all, thisMonth, lastMonth);
-      msg.send( messages.join("\n") );
+
+      robot.emit('slack.attachment', {
+        message: msg.message,
+        content: [
+          {
+            pretext: '先月の支出まとめです',
+            fields: report2fields(all, thisMonth, lastMonth),
+          },
+        ],
+      });
+
     });
   });
 
