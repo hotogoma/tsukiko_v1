@@ -8,8 +8,7 @@
     "node": "6"
   },
   "scripts": {
-    "start": "bin/hubot",
-    "slack": "nf start"
+    "start": "nf start"
   },
   "dependencies": {
     "cheerio-httpcli": "^0.6.8",
