@@ -61,6 +61,7 @@ module.exports = (robot) => {
         message: msg.message,
         content: [
           {
+            fallback: '先月の支出まとめです',
             pretext: '先月の支出まとめです',
             fields: report2fields(all, thisMonth, lastMonth),
           },

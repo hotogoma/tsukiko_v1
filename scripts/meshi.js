@@ -22,6 +22,7 @@ module.exports = (robot) => {
         message: msg.message,
         content: [
           {
+            fallback: '今日の特売情報です',
             title: `今日の <${bargains.url}|${bargains.shop} の特売情報> です`,
             text: items.map((item) => `・ ${item.name} (${item.price}円)`).join("\n"),
           },

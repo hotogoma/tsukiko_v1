@@ -13,8 +13,10 @@ let signals = require('../config/irkit.json');
 const options = { room: process.env.SLACK_MAIN_CHANNEL };
 
 function weather2slackAttachment(weather) {
+  var title = '明日の天気は ' + weather.emoji + ' です';
   var attachment = {
-    title: '明日の天気は ' + weather.emoji + ' です',
+    fallback: title,
+    title: title,
     fields: [
       { title: '最高気温', value: `${weather.max}℃ (${weather.diffMaxStr}℃)`, short: true },
       { title: '最低気温', value: `${weather.min}℃ (${weather.diffMinStr}℃)`, short: true },
@@ -37,6 +39,7 @@ module.exports = (robot) => {
   // 毎朝
   cron('0 30 7 * * *', () => {
     var attachment = {
+      fallback: '朝ですよ',
       pretext: '朝ですよ',
       fields: [],
     };
@@ -90,9 +93,10 @@ module.exports = (robot) => {
         break;
     }
     if ( trash ) {
+      let text = `明日は ${trash} の日です`;
       robot.emit('slack.attachment', {
         message: options,
-        content: [{ title: `明日は ${trash} の日です` }],
+        content: [{ fallback: text, title: text }],
       });
     }
 
