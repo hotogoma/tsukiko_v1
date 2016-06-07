@@ -12,6 +12,21 @@ let signals = require('../config/irkit.json');
 
 const options = { room: process.env.SLACK_MAIN_CHANNEL };
 
+function weather2slackAttachment(weather) {
+  var attachment = {
+    title: '明日の天気は ' + weather.emoji + ' です',
+    fields: [
+      { title: '最高気温', value: `${weather.max}℃ (${weather.diffMaxStr}℃)`, short: true },
+      { title: '最低気温', value: `${weather.min}℃ (${weather.diffMinStr}℃)`, short: true },
+    ],
+  };
+  if ( weather.weather.match(/雨/) ) {
+    attachment.text = '傘を忘れないでください';
+    attachment.color = '#439FE0';
+  }
+  return attachment;
+}
+
 module.exports = (robot) => {
 
   let shukjitz = new Shukjitz();
@@ -71,15 +86,25 @@ module.exports = (robot) => {
 
     // 明日の天気
     getWeather().then((weather) => {
-      robot.send(options, `明日の天気は ${weather.description} です`);
-      if ( weather.weather.match(/雨/) ) {
-        robot.send(options, '傘を忘れないでください');
-      }
+      robot.emit('slack.attachment', {
+        message: options,
+        content: [ weather2slackAttachment(weather) ],
+      });
     });
 
   });
 
   // 平日夜
   cron('0 0 19 * * 1-5', () => robot.send(options, '19時ですよ'));
+
+  // 明日の天気 (普通に呼び出す用)
+  robot.respond(/天気/, (msg) => {
+    getWeather().then((weather) => {
+      robot.emit('slack.attachment', {
+        message: msg.message,
+        content: [ weather2slackAttachment(weather) ],
+      });
+    });
+  });
 
 };

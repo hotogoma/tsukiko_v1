@@ -8,16 +8,12 @@
 //   hubot 花金 - 花金だーワッショーイ！テンションAGEAGEマック
 'use strict';
 
-let getWeather = require('../lib/weather');
-
 module.exports = (robot) => {
 
   robot.respond(/ぺろぺろ/i, (msg) => msg.reply('まったくどうしようもない変態さんですね'));
   robot.hear(/月子ちゃんぺろぺろ/i, (msg) => msg.reply('まったくどうしようもない変態さんですね'));
   robot.hear(/^月子ちゃん$/i, (msg) => msg.reply('なんですか'));
   robot.hear(/(疲|つか)れた/i, (msg) => msg.reply('おつかれさまです先輩'));
-
-  robot.respond(/天気/, (msg) => getWeather().then((weather) => msg.send(`明日の天気は ${weather.description} です`)));
 
   robot.respond(/(花金|華金|はなきん)$/i, (msg) => msg.send('花金だーワッショーイ！テンションAGEAGEマック'));
 
