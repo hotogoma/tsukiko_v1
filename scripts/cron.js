@@ -29,32 +29,37 @@ function weather2slackAttachment(weather) {
 
 module.exports = (robot) => {
 
+
+
   let shukjitz = new Shukjitz();
   let irkit = new IRKit();
 
   // 毎朝
   cron('0 30 7 * * *', () => {
+    var attachment = {
+      pretext: '朝ですよ',
+      fields: [],
+    };
+
     let today = new Date();
 
-    robot.send(options, '朝ですよ');
-
+    // 日付
     let holiday = shukjitz.checkSync(today);
-    let dateStr = sprintf('%02d月%02d日(%s%s)%s です',
+    attachment.title = sprintf('%02d月%02d日(%s%s)%s',
       today.getMonth() + 1,
       today.getDate(),
       '日月火水木金土'.charAt( today.getDay() ),
       holiday ? '祝' : '',
       holiday ? ` ${holiday}` : ''
     );
-    robot.send(options, dateStr);
 
-    // 二十四節気の日だったらつぶやく
+    // 二十四節気
     let sekki = date2sekki( today );
     if ( sekki ) {
-      robot.send(options, `本日は ${sekki[0]} です`);
-      robot.send(options, sekki[1] + '〜');
+      attachment.fields.push({ title: sekki[0] + ' (二十四節気)', value: sekki[1] + '〜' });
     }
 
+    robot.emit('slack.attachment', { message: options, content: [ attachment ] });
   });
 
   // 7時半に照明を点ける / 9時に照明を消す
@@ -68,20 +73,27 @@ module.exports = (robot) => {
     tomorrow.setDate( tomorrow.getDate() + 1 );
 
     // ごみの日
+    var trash = null;
     switch ( tomorrow.getDay() ) {
       case 3: // 水曜
       case 6: // 土曜
-        robot.send(options, '明日は :fire: 可燃ごみ の日です');
+        trash = ':fire: 可燃ごみ';
         break;
       case 5: // 金曜
-        robot.send(options, '明日は :recycle: 資源ごみ の日です');
+        trash = ':recycle: 資源ごみ';
         break;
       case 2: // 第１・第３火曜
         let n = Math.floor( ( tomorrow.getDate() - 1 ) / 7 ) + 1;
         if ( n === 1 || n === 3 ) {
-          robot.send(options, '明日は :battery: 不燃ごみ の日です');
+          trash = ':battery: 不燃ごみ';
         }
         break;
+    }
+    if ( trash ) {
+      robot.emit('slack.attachment', {
+        message: options,
+        content: [{ title: `明日は ${trash} の日です` }],
+      });
     }
 
     // 明日の天気
