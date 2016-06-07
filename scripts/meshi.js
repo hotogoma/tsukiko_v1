@@ -18,13 +18,15 @@ module.exports = (robot) => {
   robot.respond(/特売$/i, (msg) => {
     var bargains = BARGAINS[0];
     Cookpad.bargains(bargains.url).then((items) => {
-      var text = [
-        `今日の ${bargains.shop} の特売情報ですよ`,
-        bargains.url,
-      ];
-      items = items.map((item) => '・ ' + item);
-      text = text.concat(items).join("\n");
-      msg.send(text);
+      robot.emit('slack.attachment', {
+        message: msg.message,
+        content: [
+          {
+            title: `今日の <${bargains.url}|${bargains.shop} の特売情報> です`,
+            text: items.map((item) => '・ ' + item).join("\n"),
+          },
+        ],
+      });
     });
   });
 
