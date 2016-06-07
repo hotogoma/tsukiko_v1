@@ -23,7 +23,7 @@ module.exports = (robot) => {
         content: [
           {
             title: `今日の <${bargains.url}|${bargains.shop} の特売情報> です`,
-            text: items.map((item) => '・ ' + item).join("\n"),
+            text: items.map((item) => `・ ${item.name} (${item.price}円)`).join("\n"),
           },
         ],
       });
