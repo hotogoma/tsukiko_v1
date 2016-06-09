@@ -1,5 +1,8 @@
 // Description:
 //   指定した時間になったらつぶやく系
+// Commands:
+//   hubot 天気 - 明日の天気予報を表示
+//   hubot 特売 - 今日の特売情報を表示
 'use strict';
 
 let sprintf = require('sprintf');
@@ -9,8 +12,16 @@ let date2sekki = require('../lib/date2sekki');
 let Shukjitz = require('shukjitz');
 let IRKit = require('irkit');
 let signals = require('../config/irkit.json');
+let Cookpad = require('../lib/cookpad');
 
 const options = { room: process.env.SLACK_MAIN_CHANNEL };
+
+const BARGAINS = [
+  {
+    shop: '文化堂 戸越銀座店',
+    url: 'https://cookpad.com/bargains/%E6%96%87%E5%8C%96%E5%A0%82/4114',
+  },
+];
 
 function weather2slackAttachment(weather) {
   var title = '明日の天気は ' + weather.emoji + ' です';
@@ -71,6 +82,24 @@ module.exports = (robot) => {
     cron('0 0 9 * * *', () => irkit.send( signals.light.off ));
   }
 
+  cron('0 0 19 * * *', () => {
+    robot.send(options, '19時ですよ');
+
+    var bargains = BARGAINS[0];
+    Cookpad.bargains(bargains.url).then((items) => {
+      robot.emit('slack.attachment', {
+        message: options,
+        content: [
+          {
+            fallback: '今日の特売情報です',
+            title: `今日の <${bargains.url}|${bargains.shop} の特売情報> です`,
+            text: items.map((item) => `・ ${item.name} (${item.price}円)`).join("\n"),
+          },
+        ],
+      });
+    });
+  });
+
   cron('0 0 22 * * *', () => {
     let tomorrow = new Date();
     tomorrow.setDate( tomorrow.getDate() + 1 );
@@ -110,15 +139,29 @@ module.exports = (robot) => {
 
   });
 
-  // 平日夜
-  cron('0 0 19 * * 1-5', () => robot.send(options, '19時ですよ'));
-
   // 明日の天気 (普通に呼び出す用)
   robot.respond(/天気/, (msg) => {
     getWeather().then((weather) => {
       robot.emit('slack.attachment', {
         message: msg.message,
         content: [ weather2slackAttachment(weather) ],
+      });
+    });
+  });
+
+  // 特売情報 (普通に呼び出す用)
+  robot.respond(/特売$/i, (msg) => {
+    var bargains = BARGAINS[0];
+    Cookpad.bargains(bargains.url).then((items) => {
+      robot.emit('slack.attachment', {
+        message: msg.message,
+        content: [
+          {
+            fallback: '今日の特売情報です',
+            title: `今日の <${bargains.url}|${bargains.shop} の特売情報> です`,
+            text: items.map((item) => `・ ${item.name} (${item.price}円)`).join("\n"),
+          },
+        ],
       });
     });
   });
