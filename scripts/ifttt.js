@@ -13,6 +13,8 @@ module.exports = (robot) => {
 
   // 退社を通知
   ifttt.on('leftOffice', (data) => {
+    let username = data.description;
+
     let date = new Date();
     // 土日は通知しない
     if ( date.getDay() % 6 === 0 ) { return; }
@@ -20,7 +22,13 @@ module.exports = (robot) => {
     if ( shukjitz.checkSync(date) ) { return; }
     // 昼までは通知しない
     if ( date.getHours() < 16 ) { return; }
-    robot.send(options, `【 ${data.description} 】ﾀｲｼｬ!!`);
+
+    robot.emit('slack.attachment', {
+      message: options,
+      username: username,
+      icon_emoji: `:${username}:`,
+      text: 'ﾀｲｼｬ!!!',
+    });
   });
 
 };
