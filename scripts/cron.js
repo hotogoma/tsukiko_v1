@@ -76,10 +76,10 @@ module.exports = (robot) => {
     robot.emit('slack.attachment', { message: options, content: [ attachment ] });
   });
 
-  // 7時半に照明を点ける / 9時に照明を消す
+  // 7時半に照明を点ける / 9時半に照明を消す
   if ( irkit.available() ) {
     cron('0 30 7 * * *', () => irkit.send( signals.light.on ));
-    cron('0 0 9 * * *', () => irkit.send( signals.light.off ));
+    cron('0 30 9 * * *', () => irkit.send( signals.light.off ));
   }
 
   cron('0 0 19 * * *', () => {
