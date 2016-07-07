@@ -17,9 +17,13 @@ let Cookpad = require('../lib/cookpad');
 const options = { room: process.env.SLACK_MAIN_CHANNEL };
 
 const BARGAINS = [
+  //{
+  //  shop: '文化堂 戸越銀座店',
+  //  url: 'https://cookpad.com/bargains/%E6%96%87%E5%8C%96%E5%A0%82/4114',
+  //},
   {
-    shop: '文化堂 戸越銀座店',
-    url: 'https://cookpad.com/bargains/%E6%96%87%E5%8C%96%E5%A0%82/4114',
+    shop: 'オオゼキ 戸越公園店',
+    url: 'https://cookpad.com/bargains/%E3%82%AA%E3%82%AA%E3%82%BC%E3%82%AD/8406',
   },
 ];
 
@@ -76,10 +80,10 @@ module.exports = (robot) => {
     robot.emit('slack.attachment', { message: options, content: [ attachment ] });
   });
 
-  // 7時半に照明を点ける / 9時に照明を消す
+  // 7時半に照明を点ける / 9時半に照明を消す
   if ( irkit.available() ) {
     cron('0 30 7 * * *', () => irkit.send( signals.light.on ));
-    cron('0 0 9 * * *', () => irkit.send( signals.light.off ));
+    cron('0 30 9 * * *', () => irkit.send( signals.light.off ));
   }
 
   cron('0 0 19 * * *', () => {
