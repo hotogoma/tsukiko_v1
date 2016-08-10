@@ -11,7 +11,7 @@
     "start": "nf start"
   },
   "dependencies": {
-    "cheerio-httpcli": "^0.6.8",
+    "cheerio-httpcli": "*",
     "cron": "*",
     "express-ifttt": "*",
     "gcloud": "*",
@@ -20,7 +20,7 @@
     "hubot": "*",
     "hubot-help": "*",
     "hubot-heroku-keepalive": "*",
-    "hubot-middleware-kuromoji": "^0.2.0",
+    "hubot-middleware-kuromoji": "*",
     "hubot-redis-brain": "*",
     "hubot-slack": "*",
     "irkit": "*",
