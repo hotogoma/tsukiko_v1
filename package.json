@@ -1,6 +1,6 @@
 {
   "name": "tsukiko",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "author": "'ほと' <mail@hoto.me>",
   "description": "hoto-goma bot",
@@ -11,18 +11,13 @@
     "start": "nf start"
   },
   "dependencies": {
+    "botkit": "^0.2.2",
     "cheerio-httpcli": "*",
     "cron": "*",
     "express-ifttt": "*",
     "gcloud": "*",
     "google-images": "*",
     "hp-manager": "*",
-    "hubot": "*",
-    "hubot-help": "*",
-    "hubot-heroku-keepalive": "*",
-    "hubot-middleware-kuromoji": "*",
-    "hubot-redis-brain": "*",
-    "hubot-slack": "*",
     "irkit": "*",
     "node-trello": "*",
     "request": "*",
