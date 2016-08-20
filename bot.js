@@ -1,7 +1,11 @@
 const Botkit = require('botkit');
+const BotkitStorageRedis = require('botkit-storage-redis');
 const os = require('os');
 
-const controller = Botkit.slackbot({ debug: true });
+const controller = Botkit.slackbot({
+  debug: true,
+  storage: BotkitStorageRedis( process.env.REDIS_URL || 'redis://localhost:6379/' ),
+});
 const bot = controller.spawn({ token: process.env.SLACK_TOKEN }).startRTM();
 
 controller.hears(['hello', 'hi'], 'direct_message,direct_mention,mention', (bot, message) => {

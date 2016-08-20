@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "botkit": "^0.2.2",
+    "botkit-storage-redis": "^1.0.1",
     "cheerio-httpcli": "*",
     "cron": "*",
     "express-ifttt": "*",
